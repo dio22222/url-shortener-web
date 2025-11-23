@@ -14,7 +14,7 @@ class ShortenURL(APIView):
         return hashlib.sha256(url.encode()).hexdigest()[:6]
 
     def add_trailing_slash(self, url: str):
-        if url[len(url) - 1] != "/":
+        if url[-1] != "/":
             url += "/"
         return url
 
