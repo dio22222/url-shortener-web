@@ -10,7 +10,7 @@ def generate_short_code(length):
     return "".join(secrets.choice(ALPHABET) for _ in range(length))
 
 
-def shorten_url(long_url):
+def shorten_url(long_url, user):
     short_code_length = ShortenedUrl._meta.get_field("short_code").max_length
     generation_tries = 1
 
@@ -22,6 +22,7 @@ def shorten_url(long_url):
             ShortenedUrl.objects.create(
                 original_url=long_url,
                 short_code=short_code,
+                user=user,
                 generation_tries=generation_tries,
             )
             return DOMAIN_NAME + "/" + short_code

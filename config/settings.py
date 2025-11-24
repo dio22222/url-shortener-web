@@ -23,7 +23,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "rest_framework.authtoken",
     "shortener",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,25 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTH_ENABLED = env("AUTH_ENABLED", default="True").lower() == "true"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        [
+            "rest_framework.authentication.TokenAuthentication",
+        ]
+        if AUTH_ENABLED
+        else []
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        [
+            "rest_framework.permissions.IsAuthenticated",
+        ]
+        if AUTH_ENABLED
+        else []
+    ),
+}
 
 LANGUAGE_CODE = "en-us"
 
