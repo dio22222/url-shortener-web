@@ -1,6 +1,24 @@
 # **url-shortener-api**
 A plug-and-play API for hosting your own URL shortener with ease!
 
+## Getting started with Docker
+Pull the latest image:
+```bash
+docker pull dio22222/url-shortener-api
+```
+Run the image:
+```bash
+docker run -d \ 
+  -e DEBUG=False \ 
+  -e DOMAIN_NAME=localhost:8000 \ 
+  -e USERNAME=admin \ 
+  -e PASSWORD=1234 \ 
+  -e AUTH_ENABLED=True \ 
+  -e SECRET_KEY=xxxxx \ 
+  -p 8000:8000 \ 
+  --name url-shortener-api \ 
+  dio22222/url-shortener-api
+```
 ## Motivation 💡
 I recently started using **Twilio** for sending SMS messages that contain links for my online business. The problem? The links are long, resulting in more SMS segments, which in turn results in higher prices for the messages I send.
 
